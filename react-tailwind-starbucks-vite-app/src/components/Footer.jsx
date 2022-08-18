@@ -10,7 +10,35 @@ import {MdOutlineLocalPolice} from 'react-icons/md';
 import {GiChestnutLeaf} from 'react-icons/gi';
 import {AiOutlineCopyright} from 'react-icons/ai';
 import logo from '../assets/logo.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+
+const MenuItem = ({path, menuTitle, icon}) => {
+  const navigate = useNavigate();
+
+  return (
+    <li
+      className={cx(
+        css`
+          width: 100%;
+          min-height: 3rem;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        `,
+        'flex items-center gap-1 hover:bg-gray-100 w-full hover:cursor-pointer p-2 hover:border-b-2 hover:border-blue-900'
+      )}
+      onClick={(e) => {
+        navigate(path, {
+          state: {},
+        });
+      }}
+    >
+      {icon()}
+      <Link to={path}>{menuTitle}</Link>
+    </li>
+  );
+};
+
 const Footer = () => {
   return (
     <footer
@@ -25,23 +53,45 @@ const Footer = () => {
         <img src={logo} alt={'logo'} className={`w-10`} />
         <h2 className="text-xl">Make YourSelf</h2>
       </Link>
-      <ul className="flex items-start pb-2">
-        <li className="flex items-center gap-1 hover:bg-gray-100 w-full hover:cursor-pointer p-2">
-          <RiAccountCircleLine size={32} />
-          <h2>MemberShip</h2>
-        </li>
-        <li className="flex items-center gap-1 hover:bg-gray-100 w-full hover:cursor-pointer p-2">
-          <AiOutlineQuestionCircle size={32} />
-          <h2>QA</h2>
-        </li>
-        <li className="flex items-center gap-1 hover:bg-gray-100 w-full hover:cursor-pointer p-2">
-          <MdOutlineLocalPolice size={32} />
-          <h2>Polycy</h2>
-        </li>
-        <li className="flex items-center gap-1 hover:bg-gray-100 w-full hover:cursor-pointer p-2">
-          <GiChestnutLeaf size={32} />
-          <h2>Allergen</h2>
-        </li>
+      <ul
+        className={cx(
+          'flex items-start pb-2',
+          css`
+            @media (max-width: 768px) {
+              align-items: center;
+              flex-direction: column;
+            }
+          `
+        )}
+      >
+        <MenuItem
+          path={'/membership'}
+          menuTitle={'MemberShip'}
+          icon={() => {
+            return <RiAccountCircleLine size={32} />;
+          }}
+        />
+        <MenuItem
+          path={'/qa'}
+          menuTitle={'QA'}
+          icon={() => {
+            return <AiOutlineQuestionCircle size={32} />;
+          }}
+        />
+        <MenuItem
+          path={'/polycy'}
+          menuTitle={'Polycy'}
+          icon={() => {
+            return <MdOutlineLocalPolice size={32} />;
+          }}
+        />
+        <MenuItem
+          path={'/allergen'}
+          menuTitle={'Allergen'}
+          icon={() => {
+            return <GiChestnutLeaf size={32} />;
+          }}
+        />
       </ul>
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-1">

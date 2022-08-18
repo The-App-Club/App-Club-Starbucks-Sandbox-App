@@ -6,16 +6,17 @@ import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
 import {Nav} from './components/Nav';
 import {Header} from './components/Header';
 import {Footer} from './components/Footer';
+import {ScrollToTop} from './components/ScrollToTop';
 import {HomePage} from './pages/home';
 import {MemberShipPage} from './pages/membership';
 import {QAPage} from './pages/qa';
 import {PolycyPage} from './pages/polycy';
 import {AllergenPage} from './pages/allergen';
+import {NotFoundPage} from './pages/not-found';
 
 import '@fontsource/inter';
 import './styles/index.css';
 import './styles/index.scss';
-import {NotFoundPage} from './pages/not-found';
 
 const App = () => {
   const location = useLocation();
@@ -39,6 +40,7 @@ const App = () => {
         min-height: 100vh;
       `}
     >
+      <ScrollToTop />
       <Nav
         open={open}
         setOpen={setOpen}
