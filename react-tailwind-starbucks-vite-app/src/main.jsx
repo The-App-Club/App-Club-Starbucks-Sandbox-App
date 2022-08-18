@@ -7,6 +7,10 @@ import {Nav} from './components/Nav';
 import {Header} from './components/Header';
 import {Footer} from './components/Footer';
 import {HomePage} from './pages/home';
+import {MemberShipPage} from './pages/membership';
+import {QAPage} from './pages/qa';
+import {PolycyPage} from './pages/polycy';
+import {AllergenPage} from './pages/allergen';
 
 import '@fontsource/inter';
 import './styles/index.css';
@@ -55,6 +59,33 @@ const App = () => {
               path="/"
               element={
                 <HomePage pageName={location.pathname} notifier={setOpen} />
+              }
+            />
+            <Route
+              path="/membership"
+              element={
+                <MemberShipPage
+                  pageName={location.pathname}
+                  notifier={setOpen}
+                />
+              }
+            />
+            <Route
+              path="/qa"
+              element={
+                <QAPage pageName={location.pathname} notifier={setOpen} />
+              }
+            />
+            <Route
+              path="/polycy"
+              element={
+                <PolycyPage pageName={location.pathname} notifier={setOpen} />
+              }
+            />
+            <Route
+              path="/allergen"
+              element={
+                <AllergenPage pageName={location.pathname} notifier={setOpen} />
               }
             />
             <Route

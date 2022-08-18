@@ -14,6 +14,11 @@ import {MdOutlineChat} from 'react-icons/md';
 import {GrBeacon} from 'react-icons/gr';
 import {RiAdvertisementLine} from 'react-icons/ri';
 
+import {RiAccountCircleLine} from 'react-icons/ri';
+import {AiOutlineQuestionCircle} from 'react-icons/ai';
+import {MdOutlineLocalPolice} from 'react-icons/md';
+import {GiChestnutLeaf} from 'react-icons/gi';
+
 import logo from '../assets/logo.png';
 
 const MenuItem = ({path, menuTitle, icon}) => {
@@ -138,31 +143,31 @@ const Nav = ({open, setOpen, isTrigger, setIsTrigger, handleClick}) => {
             }}
           />
           <MenuItem
-            path={'/adsense'}
-            menuTitle={'Ads'}
+            path={'/membership'}
+            menuTitle={'MemberShip'}
             icon={() => {
-              return <RiAdvertisementLine size={24} />;
+              return <RiAccountCircleLine size={24} />;
             }}
           />
           <MenuItem
-            path={'/topic'}
-            menuTitle={'Topics'}
+            path={'/qa'}
+            menuTitle={'QA'}
             icon={() => {
-              return <MdOutlineChat size={24} />;
+              return <AiOutlineQuestionCircle size={24} />;
             }}
           />
           <MenuItem
-            path={'/moment'}
-            menuTitle={'Moments'}
+            path={'/polycy'}
+            menuTitle={'Polycy'}
             icon={() => {
-              return <GrBeacon size={24} />;
+              return <MdOutlineLocalPolice size={24} />;
             }}
           />
           <MenuItem
-            path={'/notification'}
-            menuTitle={'Notification'}
+            path={'/allergen'}
+            menuTitle={'Allergen'}
             icon={() => {
-              return <MdOutlineNotifications size={24} />;
+              return <GiChestnutLeaf size={24} />;
             }}
           />
         </ul>
