@@ -20,7 +20,7 @@ const HomePage = ({pageName, notifier}) => {
           css`
             max-width: 1600px;
             min-height: 100vh;
-            @media (max-width: 1200px) {
+            @media (max-width: 1250px) {
               max-width: 700px;
             }
           `
@@ -32,7 +32,7 @@ const HomePage = ({pageName, notifier}) => {
             css`
               justify-content: space-between;
             `,
-            `flex w-full items-start gap-4`
+            `flex w-full items-start gap-2`
           )}
         >
           <AdsSidebar
@@ -40,7 +40,7 @@ const HomePage = ({pageName, notifier}) => {
               position: sticky;
               top: 3rem;
               display: block;
-              @media (max-width: 1200px) {
+              @media (max-width: 1250px) {
                 display: none;
               }
             `}

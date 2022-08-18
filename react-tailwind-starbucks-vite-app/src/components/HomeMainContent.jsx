@@ -5,8 +5,34 @@ import smallOrangePumpkinWithGreenLeavesBehind from '../assets/small-orange-pump
 import {Brewing} from './Brewing';
 import {PickUp} from './PickUp';
 import {css, cx} from '@emotion/css';
+import {useDebouncedCallback} from 'use-debounce';
+import {useEffect} from 'react';
+import {useState} from 'react';
 
 const HomeMainContent = () => {
+  const [div4, setDiv4] = useState('div4');
+  const [div5, setDiv5] = useState('div5');
+  const [div6, setDiv6] = useState('div6');
+
+  const handleResize = useDebouncedCallback((e) => {
+    if (window.matchMedia('(max-width: 1250px)').matches) {
+      setDiv4('');
+      setDiv5('');
+      setDiv6('');
+    } else {
+      setDiv4('div4');
+      setDiv5('div5');
+      setDiv6('div6');
+    }
+  }, 600);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div
       className={cx(
@@ -15,50 +41,139 @@ const HomeMainContent = () => {
           height: 100%;
           display: grid;
           grid-template-columns: repeat(10, 1fr);
-          grid-template-rows: repeat(6, 1fr);
-          max-height: initial;
-          @media (min-height: 800px) {
-            max-height: 36rem;
-          }
-          gap: 1rem;
-          > div:not(.div4) {
+          grid-template-rows: repeat(4, auto);
+          overflow: hidden;
+          width: 100%;
+          > div {
             overflow: hidden;
-            width: 100%;
-            min-height: 24rem;
           }
           .div1 {
-            grid-area: 1 / 1 / 4 / 6;
+            grid-area: 1 / 1 / 3 / 6;
+            max-height: 20rem;
+            @media (min-height: 800px) {
+              max-height: 32rem;
+            }
           }
           .div2 {
-            grid-area: 4 / 1 / 7 / 4;
+            grid-area: 3 / 1 / 5 / 4;
+            max-height: 16rem;
           }
           .div3 {
-            grid-area: 4 / 4 / 7 / 6;
+            grid-area: 3 / 4 / 5 / 6;
+            max-height: 16rem;
           }
           .div4 {
             grid-area: 1 / 6 / 2 / 11;
           }
           .div5 {
-            grid-area: 2 / 6 / 7 / 9;
+            grid-area: 2 / 6 / 5 / 9;
           }
           .div6 {
-            grid-area: 2 / 9 / 7 / 11;
+            grid-area: 2 / 9 / 5 / 11;
           }
-          @media (max-width: 1200px) {
-            max-height: initial;
+          @media (max-width: 1250px) {
             display: flex;
             flex-direction: column;
-            > div:not(.div4, .div6, .div5) {
-              overflow: hidden;
-              width: 100%;
-              min-height: initial;
-              max-height: 12rem;
+            .div1,
+            .div2,
+            .div3 {
+              display: none;
+            }
+          }
+          .sp {
+            display: none;
+            @media (max-width: 1250px) {
+              display: flex;
+              flex-direction: column;
             }
           }
         `,
-        ''
+        'gap-2'
       )}
     >
+      <div className="sp">
+        <div
+          className={cx(
+            css`
+              max-height: 18rem;
+            `,
+            'border-2 hover:cursor-pointer overflow-hidden'
+          )}
+        >
+          <img
+            src={thaiFoodTakeout}
+            alt="thaiFoodTakeout"
+            className={css`
+              width: 100%;
+              height: 100%;
+              display: block;
+              object-fit: cover;
+              object-position: center center;
+              :hover {
+                transform: scale(1.2);
+                transition: transform 0.6s ease;
+              }
+            `}
+          />
+        </div>
+        <div
+          className={cx(
+            css`
+              max-height: 12rem;
+            `,
+            'flex items-stretch'
+          )}
+        >
+          <div
+            className={cx(
+              css`
+                flex-basis: 60%;
+              `,
+              'border-2 hover:cursor-pointer overflow-hidden'
+            )}
+          >
+            <img
+              src={smallOrangePumpkinWithGreenLeavesBehind}
+              alt="smallOrangePumpkinWithGreenLeavesBehind"
+              className={css`
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: cover;
+                object-position: center center;
+                :hover {
+                  transform: scale(1.2);
+                  transition: transform 0.6s ease;
+                }
+              `}
+            />
+          </div>
+          <div
+            className={cx(
+              css`
+                flex-basis: 40%;
+              `,
+              `border-2 hover:cursor-pointer overflow-hidden`
+            )}
+          >
+            <img
+              src={redAndGreenGooseberriesAgainstWhite}
+              alt="redAndGreenGooseberriesAgainstWhite"
+              className={css`
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: cover;
+                object-position: center center;
+                :hover {
+                  transform: scale(1.2);
+                  transition: transform 0.6s ease;
+                }
+              `}
+            />
+          </div>
+        </div>
+      </div>
       <div className="div1 border-2 hover:cursor-pointer">
         <img
           src={thaiFoodTakeout}
@@ -93,7 +208,7 @@ const HomeMainContent = () => {
           `}
         />
       </div>
-      <div className={cx(css``, 'div3 border-2 hover:cursor-pointer')}>
+      <div className={`div3 border-2 hover:cursor-pointer`}>
         <img
           src={redAndGreenGooseberriesAgainstWhite}
           alt="redAndGreenGooseberriesAgainstWhite"
@@ -110,7 +225,7 @@ const HomeMainContent = () => {
           `}
         />
       </div>
-      <div className="div4 border-2 relative p-2">
+      <div className={`div4 border-2 relative p-2`}>
         <div className="w-full flex items-center justify-between pb-2">
           <h2 className="text-xl">What's Lastest News</h2>
           <button
@@ -126,7 +241,7 @@ const HomeMainContent = () => {
           to make a type specimen book.
         </p>
       </div>
-      <div className="div5 border-2">
+      <div className={`div5 border-2`}>
         <div className="w-full flex items-center justify-between pr-3 py-2">
           <h2 className="text-lg px-4 py-2">What’s Brewing</h2>
           <button
@@ -139,7 +254,7 @@ const HomeMainContent = () => {
         <Brewing
           className={css`
             display: none;
-            @media (max-width: 1200px) {
+            @media (max-width: 1250px) {
               display: grid;
             }
           `}
@@ -149,9 +264,8 @@ const HomeMainContent = () => {
             css`
               width: 100%;
               height: 100%;
-              min-height: 22rem;
               display: block;
-              @media (max-width: 1200px) {
+              @media (max-width: 1250px) {
                 display: none;
               }
             `,
@@ -161,7 +275,7 @@ const HomeMainContent = () => {
           <Brewing className={'px-3 pb-20'} />
         </Scrollbars>
       </div>
-      <div className={cx(css``, 'div6 border-2')}>
+      <div className={`div6 border-2`}>
         <div className="w-full flex items-center justify-between pr-3 py-2">
           <h2 className="text-lg px-4 py-2">Pick Up</h2>
           <button
@@ -176,7 +290,7 @@ const HomeMainContent = () => {
           className={cx(
             css`
               display: none;
-              @media (max-width: 1200px) {
+              @media (max-width: 1250px) {
                 display: grid;
               }
             `,
@@ -188,9 +302,8 @@ const HomeMainContent = () => {
             css`
               width: 100%;
               height: 100%;
-              min-height: 22rem;
               display: block;
-              @media (max-width: 1200px) {
+              @media (max-width: 1250px) {
                 display: none;
               }
             `,
