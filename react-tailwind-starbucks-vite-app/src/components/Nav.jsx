@@ -83,7 +83,7 @@ const Nav = ({open, setOpen, isTrigger, setIsTrigger, handleClick}) => {
       ref={navContainerDomRef}
       className={cx(
         css`
-          z-index: 3;
+          z-index: 103;
           transform: translate(100%, 0%);
           max-width: 22rem;
           @media (max-width: 768px) {
